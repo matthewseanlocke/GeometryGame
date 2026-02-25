@@ -33,21 +33,23 @@ function App() {
   // Responsive State
   const [scaleFactor, setScaleFactor] = useState(1);
   const [isShortScreen, setIsShortScreen] = useState(false);
+  const [viewportMin, setViewportMin] = useState(900);
 
   useEffect(() => {
     const handleResize = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
       const minDim = Math.min(w, h);
+      setViewportMin(minDim);
       // Identify short landscape screens (e.g. mobile landscape) to hide non-critical UI
       setIsShortScreen(h < 500 && w > h);
 
       // Scale shapes based on the limiting screen dimension.
       // This keeps gameplay usable on short/narrow mobile viewports.
-      if (minDim < 380) setScaleFactor(0.55);
-      else if (minDim < 430) setScaleFactor(0.65);
-      else if (minDim < 520) setScaleFactor(0.75);
-      else if (minDim < 700) setScaleFactor(0.9);
+      if (minDim < 380) setScaleFactor(0.35);
+      else if (minDim < 430) setScaleFactor(0.45);
+      else if (minDim < 520) setScaleFactor(0.58);
+      else if (minDim < 700) setScaleFactor(0.72);
       else if (minDim < 900) setScaleFactor(1.0);
       else if (minDim < 1200) setScaleFactor(1.1);
       else setScaleFactor(1.2);
@@ -63,7 +65,9 @@ function App() {
   // Mixed behavior: Odd stages are Nesting, Even stages are clustering/building.
   const isNestPhase = phaseIndex % 2 !== 0;
   const targetMode = isNestPhase ? 'inside' : 'outside';
-  const currentRadius = Math.round((PHASE_RADII[phaseIndex] || 20) * scaleFactor);
+  const scaledRadius = (PHASE_RADII[phaseIndex] || 20) * scaleFactor;
+  const mobileRadiusCap = viewportMin * 0.18;
+  const currentRadius = Math.round(Math.min(scaledRadius, mobileRadiusCap));
 
   // Level Logic
   useEffect(() => {
@@ -378,7 +382,7 @@ function App() {
             fontSize: '14px',
             color: 'rgba(148, 163, 184, 0.5)'
           }}>
-            v1.7.2
+            v1.7.3
           </div>
         </div>
       </div> {/* End Shake Wrapper */}
