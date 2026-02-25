@@ -138,6 +138,7 @@ Follow existing code conventions first; only introduce new patterns when they cl
 - Do not edit `node_modules/`.
 - If a change affects gameplay logic, sanity check both INSIDE and OUTSIDE phases.
 - Run the narrowest verification command first, then broader checks.
+- If UI/gameplay behavior changes, bump the on-screen build number in `src/App.tsx` (bottom-right HUD) using numeric format only: `vX.Y.Z`.
 
 ## Suggested Verification Flow
 

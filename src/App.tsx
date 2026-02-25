@@ -38,14 +38,19 @@ function App() {
     const handleResize = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
+      const minDim = Math.min(w, h);
       // Identify short landscape screens (e.g. mobile landscape) to hide non-critical UI
       setIsShortScreen(h < 500 && w > h);
 
-      // Scale shapes based on screen real estate
-      if (w >= 1600) setScaleFactor(1.4); // Large Desktop
-      else if (w >= 1024) setScaleFactor(1.2); // Laptop/Tablet Landscape
-      else if (w < 480) setScaleFactor(0.8); // Small Phone Portrait
-      else setScaleFactor(1.0);
+      // Scale shapes based on the limiting screen dimension.
+      // This keeps gameplay usable on short/narrow mobile viewports.
+      if (minDim < 380) setScaleFactor(0.55);
+      else if (minDim < 430) setScaleFactor(0.65);
+      else if (minDim < 520) setScaleFactor(0.75);
+      else if (minDim < 700) setScaleFactor(0.9);
+      else if (minDim < 900) setScaleFactor(1.0);
+      else if (minDim < 1200) setScaleFactor(1.1);
+      else setScaleFactor(1.2);
     };
 
     handleResize();
@@ -373,7 +378,7 @@ function App() {
             fontSize: '14px',
             color: 'rgba(148, 163, 184, 0.5)'
           }}>
-            v1.7.1-shake-fix
+            v1.7.2
           </div>
         </div>
       </div> {/* End Shake Wrapper */}
