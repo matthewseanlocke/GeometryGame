@@ -1,0 +1,14 @@
+{
+  "order": [
+    "circle-field",
+    "hexagon-field",
+    "triangle-field",
+    "square-field",
+    "heart-field",
+    "circle-pairs",
+    "hexagon-pairs",
+    "triangle-cascade",
+    "square-groups",
+    "heart-finale"
+  ]
+}

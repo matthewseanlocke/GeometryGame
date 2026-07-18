@@ -1,0 +1,225 @@
+{
+  "updatedAt": 1772004457741,
+  "settings": {
+    "shape": "hexagon",
+    "radius": 58,
+    "colorMode": "random",
+    "color": "#22d3ee",
+    "palette": [
+      "#22d3ee",
+      "#a78bfa",
+      "#f43f5e"
+    ]
+  },
+  "shapes": [
+    {
+      "id": "tl5ug30sy",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 163.5,
+        "y": 154
+      },
+      "rotation": 0,
+      "color": "hsl(49, 70%, 60%)"
+    },
+    {
+      "id": "1hf9fo1hx",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 371,
+        "y": 157.5
+      },
+      "rotation": 0,
+      "color": "hsl(225, 70%, 60%)"
+    },
+    {
+      "id": "z6rd6jjs2",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 378.5,
+        "y": 299.5
+      },
+      "rotation": 0,
+      "color": "hsl(121, 70%, 60%)"
+    },
+    {
+      "id": "l3qyzwqzl",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 249.5,
+        "y": 388
+      },
+      "rotation": 0,
+      "color": "hsl(338, 70%, 60%)"
+    },
+    {
+      "id": "oe26n9bam",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 152.5,
+        "y": 455.5
+      },
+      "rotation": 0,
+      "color": "hsl(331, 70%, 60%)"
+    },
+    {
+      "id": "r9ye1s1v0",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 316,
+        "y": 585
+      },
+      "rotation": 0,
+      "color": "hsl(164, 70%, 60%)"
+    },
+    {
+      "id": "vawft2x1e",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 524,
+        "y": 510.5
+      },
+      "rotation": 0,
+      "color": "hsl(261, 70%, 60%)"
+    },
+    {
+      "id": "lr7ckyeq6",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 417,
+        "y": 436
+      },
+      "rotation": 0,
+      "color": "hsl(226, 70%, 60%)"
+    },
+    {
+      "id": "s13yhns34",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 87.5,
+        "y": 293.5
+      },
+      "rotation": 0,
+      "color": "hsl(32, 70%, 60%)"
+    },
+    {
+      "id": "t6j5w5bnm",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 539.5,
+        "y": 216
+      },
+      "rotation": 0,
+      "color": "hsl(231, 70%, 60%)"
+    },
+    {
+      "id": "iis7rufqa",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 494,
+        "y": 58
+      },
+      "rotation": 0,
+      "color": "hsl(312, 70%, 60%)"
+    },
+    {
+      "id": "j82oa9yw8",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 286,
+        "y": 50
+      },
+      "rotation": 0,
+      "color": "hsl(174, 70%, 60%)"
+    },
+    {
+      "id": "8iz5uhurl",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 69,
+        "y": 37
+      },
+      "rotation": 0,
+      "color": "hsl(340, 70%, 60%)"
+    },
+    {
+      "id": "l4znl6w0n",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 66.5,
+        "y": 553
+      },
+      "rotation": 0,
+      "color": "hsl(245, 70%, 60%)"
+    },
+    {
+      "id": "oxsja8b1l",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 171.5,
+        "y": 705
+      },
+      "rotation": 0,
+      "color": "hsl(61, 70%, 60%)"
+    },
+    {
+      "id": "ri9se0qnh",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 513,
+        "y": 812
+      },
+      "rotation": 0,
+      "color": "hsl(96, 70%, 60%)"
+    },
+    {
+      "id": "pb9yay64h",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 477,
+        "y": 663
+      },
+      "rotation": 0,
+      "color": "hsl(150, 70%, 60%)"
+    },
+    {
+      "id": "j8s1x0mur",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 337,
+        "y": 748.5
+      },
+      "rotation": 0,
+      "color": "hsl(143, 70%, 60%)"
+    },
+    {
+      "id": "m19vwhdr9",
+      "type": "hexagon",
+      "radius": 58,
+      "center": {
+        "x": 50.5,
+        "y": 808.5
+      },
+      "rotation": 0,
+      "color": "hsl(6, 70%, 60%)"
+    }
+  ]
+}

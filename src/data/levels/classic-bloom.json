@@ -1,0 +1,50 @@
+{
+  "id": "classic-bloom",
+  "name": "Classic Bloom",
+  "description": "Balanced outside and inside progression with a nested finish.",
+  "tags": ["mixed", "intro"],
+  "stages": [
+    {
+      "mode": "outside",
+      "targetCount": 6,
+      "sizeScale": 1,
+      "shapeType": "circle",
+      "colorMode": "random"
+    },
+    {
+      "mode": "inside",
+      "targetCount": 6,
+      "sizeScale": 0.88,
+      "shapeType": "circle",
+      "colorMode": "random"
+    },
+    {
+      "mode": "outside",
+      "targetCount": 6,
+      "sizeScale": 0.8,
+      "shapeType": "circle",
+      "colorMode": "random"
+    },
+    {
+      "mode": "inside",
+      "targetCount": 8,
+      "sizeScale": 0.72,
+      "shapeType": "circle",
+      "colorMode": "random"
+    },
+    {
+      "mode": "outside",
+      "targetCount": 5,
+      "sizeScale": 0.64,
+      "shapeType": "circle",
+      "colorMode": "random"
+    },
+    {
+      "mode": "inside",
+      "targetCount": 10,
+      "sizeScale": 0.56,
+      "shapeType": "circle",
+      "colorMode": "random"
+    }
+  ]
+}

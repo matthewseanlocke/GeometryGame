@@ -1,0 +1,56 @@
+{
+  "id": "expansion-to-nest",
+  "name": "Expansion to Nest",
+  "description": "Outside pressure that resolves into an inside-heavy finish.",
+  "tags": ["outside-focus", "inside-finish"],
+  "stages": [
+    {
+      "mode": "outside",
+      "targetCount": 8,
+      "sizeScale": 1,
+      "shapeType": "hexagon",
+      "colorMode": "palette",
+      "palette": ["#22d3ee", "#67e8f9", "#a78bfa"]
+    },
+    {
+      "mode": "outside",
+      "targetCount": 7,
+      "sizeScale": 0.86,
+      "shapeType": "hexagon",
+      "colorMode": "palette",
+      "palette": ["#22d3ee", "#67e8f9", "#a78bfa"]
+    },
+    {
+      "mode": "outside",
+      "targetCount": 6,
+      "sizeScale": 0.76,
+      "shapeType": "hexagon",
+      "colorMode": "palette",
+      "palette": ["#22d3ee", "#67e8f9", "#a78bfa"]
+    },
+    {
+      "mode": "inside",
+      "targetCount": 8,
+      "sizeScale": 0.68,
+      "shapeType": "hexagon",
+      "colorMode": "palette",
+      "palette": ["#22d3ee", "#67e8f9", "#a78bfa"]
+    },
+    {
+      "mode": "inside",
+      "targetCount": 10,
+      "sizeScale": 0.6,
+      "shapeType": "hexagon",
+      "colorMode": "palette",
+      "palette": ["#22d3ee", "#67e8f9", "#a78bfa"]
+    },
+    {
+      "mode": "inside",
+      "targetCount": 12,
+      "sizeScale": 0.52,
+      "shapeType": "hexagon",
+      "colorMode": "palette",
+      "palette": ["#22d3ee", "#67e8f9", "#a78bfa"]
+    }
+  ]
+}

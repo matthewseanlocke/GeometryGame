@@ -1,0 +1,41 @@
+{
+    "id":  "triangle-field",
+    "name":  "Triangle Field",
+    "description":  "Place four separate sizes of triangle shapes, from large to small.",
+    "tags":  [
+                 "first-circuit",
+                 "outside",
+                 "triangle",
+                 "four-sizes"
+             ],
+    "stages":  [
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.94,
+                       "shapeType":  "triangle",
+                       "colorMode":  "random"
+                   },
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.72,
+                       "shapeType":  "triangle",
+                       "colorMode":  "random"
+                   },
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.52,
+                       "shapeType":  "triangle",
+                       "colorMode":  "random"
+                   },
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.4,
+                       "shapeType":  "triangle",
+                       "colorMode":  "random"
+                   }
+               ]
+}

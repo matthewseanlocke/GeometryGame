@@ -1,0 +1,61 @@
+{
+    "id":  "square-groups",
+    "name":  "Square Nests",
+    "description":  "Create six square families using one large parent and three inside sizes.",
+    "tags":  [
+                 "second-circuit",
+                 "inside",
+                 "square",
+                 "four-stages"
+             ],
+    "stages":  [
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.86,
+                       "shapeType":  "square",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#38bdf8",
+                                       "#818cf8",
+                                       "#c084fc"
+                                   ]
+                   },
+                   {
+                       "mode":  "inside",
+                       "targetCount":  6,
+                       "sizeScale":  0.64,
+                       "shapeType":  "square",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#38bdf8",
+                                       "#818cf8",
+                                       "#c084fc"
+                                   ]
+                   },
+                   {
+                       "mode":  "inside",
+                       "targetCount":  6,
+                       "sizeScale":  0.46,
+                       "shapeType":  "square",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#38bdf8",
+                                       "#818cf8",
+                                       "#c084fc"
+                                   ]
+                   },
+                   {
+                       "mode":  "inside",
+                       "targetCount":  6,
+                       "sizeScale":  0.34,
+                       "shapeType":  "square",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#38bdf8",
+                                       "#818cf8",
+                                       "#c084fc"
+                                   ]
+                   }
+               ]
+}

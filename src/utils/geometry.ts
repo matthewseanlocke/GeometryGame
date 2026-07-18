@@ -1,6 +1,6 @@
 export type Point = { x: number; y: number };
 
-export type ShapeType = 'triangle' | 'square' | 'pentagon' | 'hexagon' | 'heptagon' | 'octagon' | 'circle';
+export type ShapeType = 'triangle' | 'square' | 'heart' | 'hexagon' | 'circle';
 
 export interface Shape {
     id: string;
@@ -8,6 +8,7 @@ export interface Shape {
     radius: number;
     center: Point;
     rotation: number; // in radians
+    color?: string;
 }
 
 /**
@@ -31,6 +32,42 @@ export function getPolygonVertices(
             y: center.y + radius * Math.sin(angle),
         });
     }
+    return vertices;
+}
+
+export function getShapeVertices(
+    type: ShapeType,
+    radius: number,
+    center: Point,
+    rotation: number = 0
+): Point[] {
+    if (type !== 'heart') {
+        return getPolygonVertices(getSides(type), radius, center, rotation);
+    }
+
+    const vertices: Point[] = [];
+    const pointCount = 48;
+    const cosRotation = Math.cos(rotation);
+    const sinRotation = Math.sin(rotation);
+
+    for (let index = 0; index < pointCount; index++) {
+        const angle = (index * 2 * Math.PI) / pointCount;
+        const sinAngle = Math.sin(angle);
+        const rawX = 16 * sinAngle * sinAngle * sinAngle;
+        const rawY = 13 * Math.cos(angle)
+            - 5 * Math.cos(2 * angle)
+            - 2 * Math.cos(3 * angle)
+            - Math.cos(4 * angle);
+        const x = (rawX / 16) * radius * 0.9;
+        const normalizedY = -((rawY + 2.5) / 14.5) * radius;
+        const y = normalizedY > 0 ? normalizedY * 0.58 : normalizedY;
+
+        vertices.push({
+            x: center.x + x * cosRotation - y * sinRotation,
+            y: center.y + x * sinRotation + y * cosRotation,
+        });
+    }
+
     return vertices;
 }
 
@@ -93,7 +130,7 @@ export function isPolygonContained(innerPoly: Point[], outerPoly: Point[]): bool
 
     // 2. If no edges intersect, it's either fully inside or fully outside.
     // Check if one vertex of inner is inside outer.
-    return isPointInPolygon(innerPoly[0], outerPoly);
+    return innerPoly.every(point => isPointInPolygon(point, outerPoly));
 }
 
 /**
@@ -117,7 +154,7 @@ export function checkPlacementType(newPoly: Point[], existingPolys: Point[][]): 
     // (Assuming simple convex polygons)
     let isInsideInfo = false;
     for (const existing of existingPolys) {
-        if (isPointInPolygon(newPoly[0], existing)) {
+        if (newPoly.every(point => isPointInPolygon(point, existing))) {
             isInsideInfo = true;
             break;
         }
@@ -139,10 +176,8 @@ export function getSides(type: ShapeType): number {
     switch (type) {
         case 'triangle': return 3;
         case 'square': return 4;
-        case 'pentagon': return 5;
+        case 'heart': return 48;
         case 'hexagon': return 6;
-        case 'heptagon': return 7;
-        case 'octagon': return 8;
         case 'circle': return 32; // Approximate circle with 32 sides for collision
     }
 }

@@ -1,0 +1,50 @@
+{
+  "id": "inside-cascade",
+  "name": "Inside Cascade",
+  "description": "A fast transition into dense interior layering.",
+  "tags": ["inside-focus", "dense"],
+  "stages": [
+    {
+      "mode": "outside",
+      "targetCount": 6,
+      "sizeScale": 0.92,
+      "shapeType": "triangle",
+      "colorMode": "random"
+    },
+    {
+      "mode": "inside",
+      "targetCount": 6,
+      "sizeScale": 0.78,
+      "shapeType": "triangle",
+      "colorMode": "random"
+    },
+    {
+      "mode": "inside",
+      "targetCount": 6,
+      "sizeScale": 0.68,
+      "shapeType": "triangle",
+      "colorMode": "random"
+    },
+    {
+      "mode": "inside",
+      "targetCount": 6,
+      "sizeScale": 0.6,
+      "shapeType": "triangle",
+      "colorMode": "random"
+    },
+    {
+      "mode": "inside",
+      "targetCount": 6,
+      "sizeScale": 0.54,
+      "shapeType": "triangle",
+      "colorMode": "random"
+    },
+    {
+      "mode": "inside",
+      "targetCount": 6,
+      "sizeScale": 0.48,
+      "shapeType": "triangle",
+      "colorMode": "random"
+    }
+  ]
+}

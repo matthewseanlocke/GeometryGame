@@ -1,0 +1,61 @@
+{
+    "id":  "heart-finale",
+    "name":  "Heart Nests",
+    "description":  "Create six heart families using one large parent and three inside sizes.",
+    "tags":  [
+                 "second-circuit",
+                 "inside",
+                 "heart",
+                 "four-stages"
+             ],
+    "stages":  [
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.86,
+                       "shapeType":  "heart",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#22d3ee",
+                                       "#a78bfa",
+                                       "#f472b6"
+                                   ]
+                   },
+                   {
+                       "mode":  "inside",
+                       "targetCount":  6,
+                       "sizeScale":  0.64,
+                       "shapeType":  "heart",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#22d3ee",
+                                       "#a78bfa",
+                                       "#f472b6"
+                                   ]
+                   },
+                   {
+                       "mode":  "inside",
+                       "targetCount":  6,
+                       "sizeScale":  0.46,
+                       "shapeType":  "heart",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#22d3ee",
+                                       "#a78bfa",
+                                       "#f472b6"
+                                   ]
+                   },
+                   {
+                       "mode":  "inside",
+                       "targetCount":  6,
+                       "sizeScale":  0.34,
+                       "shapeType":  "heart",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#22d3ee",
+                                       "#a78bfa",
+                                       "#f472b6"
+                                   ]
+                   }
+               ]
+}

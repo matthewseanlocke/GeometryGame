@@ -1,0 +1,61 @@
+{
+    "id":  "hexagon-field",
+    "name":  "Hexagon Field",
+    "description":  "Place four separate sizes of hexagon shapes, from large to small.",
+    "tags":  [
+                 "first-circuit",
+                 "outside",
+                 "hexagon",
+                 "four-sizes"
+             ],
+    "stages":  [
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.9,
+                       "shapeType":  "hexagon",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#22d3ee",
+                                       "#67e8f9",
+                                       "#a78bfa"
+                                   ]
+                   },
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.68,
+                       "shapeType":  "hexagon",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#22d3ee",
+                                       "#67e8f9",
+                                       "#a78bfa"
+                                   ]
+                   },
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.48,
+                       "shapeType":  "hexagon",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#22d3ee",
+                                       "#67e8f9",
+                                       "#a78bfa"
+                                   ]
+                   },
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.36,
+                       "shapeType":  "hexagon",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#22d3ee",
+                                       "#67e8f9",
+                                       "#a78bfa"
+                                   ]
+                   }
+               ]
+}

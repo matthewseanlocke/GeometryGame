@@ -1,0 +1,14 @@
+{
+  "id": "test-honeycomb-nest",
+  "name": "Test Honeycomb Nest",
+  "description": "Outside build into inside finish for test mode.",
+  "tags": ["potential", "test"],
+  "stages": [
+    { "mode": "outside", "targetCount": 7, "sizeScale": 1, "shapeType": "hexagon", "colorMode": "palette", "palette": ["#22d3ee", "#67e8f9", "#a78bfa"] },
+    { "mode": "outside", "targetCount": 6, "sizeScale": 0.86, "shapeType": "hexagon", "colorMode": "palette", "palette": ["#22d3ee", "#67e8f9", "#a78bfa"] },
+    { "mode": "inside", "targetCount": 8, "sizeScale": 0.74, "shapeType": "hexagon", "colorMode": "palette", "palette": ["#22d3ee", "#67e8f9", "#a78bfa"] },
+    { "mode": "inside", "targetCount": 10, "sizeScale": 0.66, "shapeType": "hexagon", "colorMode": "palette", "palette": ["#22d3ee", "#67e8f9", "#a78bfa"] },
+    { "mode": "inside", "targetCount": 12, "sizeScale": 0.58, "shapeType": "hexagon", "colorMode": "palette", "palette": ["#22d3ee", "#67e8f9", "#a78bfa"] },
+    { "mode": "inside", "targetCount": 14, "sizeScale": 0.52, "shapeType": "hexagon", "colorMode": "palette", "palette": ["#22d3ee", "#67e8f9", "#a78bfa"] }
+  ]
+}

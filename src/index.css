@@ -123,3 +123,333 @@ canvas {
     transform: scale(1.5);
   }
 }
+.geometry-splash {
+  align-items: center;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(34, 211, 238, 0.11), transparent 32%),
+    radial-gradient(circle at 50% 115%, rgba(168, 85, 247, 0.13), transparent 42%),
+    #0f0f13;
+  display: flex;
+  height: 100vh;
+  height: 100svh;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.geometry-splash::after {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 42px 42px;
+  content: '';
+  inset: 0;
+  mask-image: radial-gradient(circle, black, transparent 78%);
+  pointer-events: none;
+  position: absolute;
+}
+
+.geometry-logo-button {
+  align-items: center;
+  animation: geometry-logo-drop 1050ms cubic-bezier(0.2, 0.8, 0.28, 1) both;
+  background: transparent;
+  border: 0;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  position: relative;
+  width: min(88vw, 620px);
+  z-index: 2;
+}
+
+.geometry-logo-mark {
+  animation: geometry-logo-idle 8s ease-in-out 1100ms infinite;
+  filter: drop-shadow(0 0 24px rgba(34, 211, 238, 0.32));
+  height: clamp(150px, 26vmin, 230px);
+  margin-bottom: 22px;
+  position: relative;
+  transition: transform 160ms ease;
+  width: clamp(150px, 26vmin, 230px);
+}
+
+.geometry-logo-orbit {
+  border-style: solid;
+  display: block;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.geometry-logo-orbit--outer {
+  border-color: #22d3ee;
+  border-radius: 24%;
+  border-width: 4px;
+  height: 84%;
+  width: 84%;
+}
+
+.geometry-logo-orbit--middle {
+  border-color: #a855f7;
+  border-radius: 50%;
+  border-width: 3px;
+  height: 58%;
+  transform: translate(-50%, -50%);
+  width: 58%;
+}
+
+.geometry-logo-orbit--inner {
+  background: #facc15;
+  border: 0;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  height: 31%;
+  transform: translate(-50%, -43%);
+  width: 34%;
+}
+
+.geometry-logo-orbit--inner::after {
+  background: #0f0f13;
+  clip-path: inherit;
+  content: '';
+  inset: 4px;
+  position: absolute;
+}
+
+.geometry-logo-title {
+  font-size: clamp(3.2rem, 11vw, 7rem);
+  font-weight: 950;
+  letter-spacing: -0.075em;
+  line-height: 0.78;
+  text-shadow: 0 0 28px rgba(34, 211, 238, 0.26);
+}
+
+.geometry-logo-subtitle {
+  color: #67e8f9;
+  font-size: clamp(1.25rem, 3.8vw, 2.3rem);
+  font-weight: 800;
+  letter-spacing: 0.72em;
+  margin-left: 0.72em;
+  margin-top: 19px;
+}
+
+.geometry-logo-prompt {
+  animation: geometry-prompt-pulse 2.4s ease-in-out 1.5s infinite;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  margin-left: 0.32em;
+  margin-top: 30px;
+}
+
+.geometry-logo-button:hover .geometry-logo-mark {
+  filter: drop-shadow(0 0 34px rgba(34, 211, 238, 0.55));
+  transform: scale(1.035);
+}
+
+.geometry-logo-button:active .geometry-logo-mark {
+  transform: scale(0.96);
+}
+
+.geometry-logo-button:focus-visible {
+  border-radius: 24px;
+  outline: 3px solid rgba(103, 232, 249, 0.9);
+  outline-offset: 6px;
+}
+
+.geometry-coffee-button {
+  align-items: center;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  color: rgba(255, 255, 255, 0.78);
+  display: inline-flex;
+  height: 44px;
+  justify-content: center;
+  left: max(18px, env(safe-area-inset-left));
+  position: absolute;
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+  width: 44px;
+  z-index: 3;
+}
+
+.geometry-coffee-button:hover {
+  background: rgba(34, 211, 238, 0.18);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.geometry-coffee-button svg {
+  height: 20px;
+  stroke-width: 2.2;
+  width: 20px;
+}
+
+.geometry-rain {
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+}
+
+.geometry-rain-shape {
+  animation: geometry-shape-fall 8s linear infinite;
+  border: 2px solid rgba(103, 232, 249, 0.16);
+  height: clamp(54px, 9vmin, 100px);
+  position: absolute;
+  top: -130px;
+  width: clamp(54px, 9vmin, 100px);
+}
+
+.geometry-rain-shape:nth-child(1) { left: 5%; animation-delay: -1s; animation-duration: 9s; }
+.geometry-rain-shape:nth-child(2) { left: 18%; animation-delay: -6s; animation-duration: 11s; }
+.geometry-rain-shape:nth-child(3) { left: 32%; animation-delay: -3s; animation-duration: 8s; }
+.geometry-rain-shape:nth-child(4) { left: 46%; animation-delay: -8s; animation-duration: 12s; }
+.geometry-rain-shape:nth-child(5) { left: 61%; animation-delay: -4s; animation-duration: 10s; }
+.geometry-rain-shape:nth-child(6) { left: 74%; animation-delay: -9s; animation-duration: 13s; }
+.geometry-rain-shape:nth-child(7) { left: 87%; animation-delay: -2s; animation-duration: 9s; }
+.geometry-rain-shape:nth-child(8) { left: 95%; animation-delay: -7s; animation-duration: 11s; }
+.geometry-rain-shape--circle { border-radius: 50%; }
+.geometry-rain-shape--triangle { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.geometry-rain-shape--hexagon { clip-path: polygon(25% 7%, 75% 7%, 100% 50%, 75% 93%, 25% 93%, 0 50%); }
+
+@keyframes geometry-logo-drop {
+  0% { opacity: 0; transform: translateY(-110svh) rotate(-7deg) scale(0.9); }
+  62% { opacity: 1; transform: translateY(12px) rotate(2deg) scale(1.05); }
+  80% { transform: translateY(-8px) rotate(-1deg) scale(0.99); }
+  100% { opacity: 1; transform: translateY(0) rotate(0) scale(1); }
+}
+
+@keyframes geometry-logo-idle {
+  0%, 100% { transform: translateY(0) rotate(-0.8deg); }
+  50% { transform: translateY(-10px) rotate(0.8deg); }
+}
+
+@keyframes geometry-prompt-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes geometry-shape-fall {
+  from { opacity: 0; transform: translate3d(0, -20px, 0) rotate(0deg); }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  to { opacity: 0; transform: translate3d(40px, 125svh, 0) rotate(300deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .geometry-logo-button,
+  .geometry-logo-mark,
+  .geometry-logo-prompt,
+  .geometry-rain-shape {
+    animation: none;
+  }
+}
+.heart-reward {
+  align-items: center;
+  animation: heart-reward-pop 1800ms cubic-bezier(0.2, 0.8, 0.25, 1) both;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(0.8rem, 2vw, 1.1rem);
+  font-weight: 900;
+  gap: 6px;
+  letter-spacing: 0.18em;
+  pointer-events: none;
+  position: fixed;
+  right: max(28px, env(safe-area-inset-right));
+  text-shadow: 0 0 16px rgba(239, 68, 68, 0.9);
+  top: 108px;
+  z-index: 240;
+}
+
+.heart-reward-icon {
+  animation: heart-reward-beat 720ms ease-in-out 2;
+  filter: drop-shadow(0 0 16px rgba(239, 68, 68, 0.95));
+  height: clamp(68px, 12vmin, 104px);
+  width: clamp(68px, 12vmin, 104px);
+}
+
+@keyframes heart-reward-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(36px) scale(0.35);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translateY(0) scale(1.16);
+  }
+
+  38% {
+    transform: translateY(0) scale(1);
+  }
+
+  76% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-38px) scale(0.82);
+  }
+}
+
+@keyframes heart-reward-beat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  42% {
+    transform: scale(1.22);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heart-reward,
+  .heart-reward-icon {
+    animation-duration: 1ms;
+  }
+}
+.geometry-mute-button {
+  align-items: center;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  color: rgba(255, 255, 255, 0.78);
+  cursor: pointer;
+  display: inline-flex;
+  height: 44px;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  right: max(18px, env(safe-area-inset-right));
+  transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+  width: 44px;
+  z-index: 3;
+}
+
+.geometry-mute-button:hover {
+  background: rgba(168, 85, 247, 0.2);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.geometry-mute-button:focus-visible {
+  outline: 3px solid rgba(103, 232, 249, 0.9);
+  outline-offset: 4px;
+}
+
+.geometry-mute-button svg {
+  height: 20px;
+  stroke-width: 2.2;
+  width: 20px;
+}

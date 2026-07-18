@@ -1,0 +1,61 @@
+{
+    "id":  "hexagon-pairs",
+    "name":  "Hexagon Nests",
+    "description":  "Create six hexagon families using one large parent and three inside sizes.",
+    "tags":  [
+                 "second-circuit",
+                 "inside",
+                 "hexagon",
+                 "four-stages"
+             ],
+    "stages":  [
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.9,
+                       "shapeType":  "hexagon",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#22d3ee",
+                                       "#67e8f9",
+                                       "#a78bfa"
+                                   ]
+                   },
+                   {
+                       "mode":  "inside",
+                       "targetCount":  6,
+                       "sizeScale":  0.68,
+                       "shapeType":  "hexagon",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#22d3ee",
+                                       "#67e8f9",
+                                       "#a78bfa"
+                                   ]
+                   },
+                   {
+                       "mode":  "inside",
+                       "targetCount":  6,
+                       "sizeScale":  0.48,
+                       "shapeType":  "hexagon",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#22d3ee",
+                                       "#67e8f9",
+                                       "#a78bfa"
+                                   ]
+                   },
+                   {
+                       "mode":  "inside",
+                       "targetCount":  6,
+                       "sizeScale":  0.36,
+                       "shapeType":  "hexagon",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#22d3ee",
+                                       "#67e8f9",
+                                       "#a78bfa"
+                                   ]
+                   }
+               ]
+}

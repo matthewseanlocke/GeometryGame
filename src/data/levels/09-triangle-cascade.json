@@ -1,0 +1,41 @@
+{
+    "id":  "triangle-cascade",
+    "name":  "Triangle Nests",
+    "description":  "Create six triangle families using one large parent and three inside sizes.",
+    "tags":  [
+                 "second-circuit",
+                 "inside",
+                 "triangle",
+                 "four-stages"
+             ],
+    "stages":  [
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.94,
+                       "shapeType":  "triangle",
+                       "colorMode":  "random"
+                   },
+                   {
+                       "mode":  "inside",
+                       "targetCount":  6,
+                       "sizeScale":  0.72,
+                       "shapeType":  "triangle",
+                       "colorMode":  "random"
+                   },
+                   {
+                       "mode":  "inside",
+                       "targetCount":  6,
+                       "sizeScale":  0.52,
+                       "shapeType":  "triangle",
+                       "colorMode":  "random"
+                   },
+                   {
+                       "mode":  "inside",
+                       "targetCount":  6,
+                       "sizeScale":  0.4,
+                       "shapeType":  "triangle",
+                       "colorMode":  "random"
+                   }
+               ]
+}

@@ -1,0 +1,61 @@
+{
+    "id":  "square-field",
+    "name":  "Square Field",
+    "description":  "Place four separate sizes of square shapes, from large to small.",
+    "tags":  [
+                 "first-circuit",
+                 "outside",
+                 "square",
+                 "four-sizes"
+             ],
+    "stages":  [
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.86,
+                       "shapeType":  "square",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#38bdf8",
+                                       "#818cf8",
+                                       "#c084fc"
+                                   ]
+                   },
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.64,
+                       "shapeType":  "square",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#38bdf8",
+                                       "#818cf8",
+                                       "#c084fc"
+                                   ]
+                   },
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.46,
+                       "shapeType":  "square",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#38bdf8",
+                                       "#818cf8",
+                                       "#c084fc"
+                                   ]
+                   },
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.34,
+                       "shapeType":  "square",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#38bdf8",
+                                       "#818cf8",
+                                       "#c084fc"
+                                   ]
+                   }
+               ]
+}

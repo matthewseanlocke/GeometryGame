@@ -1,0 +1,61 @@
+{
+    "id":  "heart-field",
+    "name":  "Heart Field",
+    "description":  "Place four separate sizes of heart shapes, from large to small.",
+    "tags":  [
+                 "first-circuit",
+                 "outside",
+                 "heart",
+                 "four-sizes"
+             ],
+    "stages":  [
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.86,
+                       "shapeType":  "heart",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#22d3ee",
+                                       "#a78bfa",
+                                       "#f472b6"
+                                   ]
+                   },
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.64,
+                       "shapeType":  "heart",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#22d3ee",
+                                       "#a78bfa",
+                                       "#f472b6"
+                                   ]
+                   },
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.46,
+                       "shapeType":  "heart",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#22d3ee",
+                                       "#a78bfa",
+                                       "#f472b6"
+                                   ]
+                   },
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.34,
+                       "shapeType":  "heart",
+                       "colorMode":  "palette",
+                       "palette":  [
+                                       "#22d3ee",
+                                       "#a78bfa",
+                                       "#f472b6"
+                                   ]
+                   }
+               ]
+}

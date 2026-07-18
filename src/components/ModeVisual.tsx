@@ -1,5 +1,5 @@
 import { cn } from '../utils/cn';
-import { getSides, getPolygonVertices, type ShapeType } from '../utils/geometry';
+import { getSides, getPolygonVertices, getShapeVertices, type ShapeType } from '../utils/geometry';
 
 interface ModeVisualProps {
     mode: 'INSIDE' | 'OUTSIDE';
@@ -52,26 +52,14 @@ export function ModeVisual({ mode, shapeType, shapesRemaining, className, size =
                 if (!isNest) {
                     if (sides === 6) {
                         rotation += 0; // 0 deg for Hexagons (Pointy top matching game)
-                    } else if (sides === 8) {
-                        rotation += Math.PI / 8; // 22.5 deg for Octagons
-                    } else if (sides === 4) {
-                        rotation += Math.PI / 4; // 45 deg for Squares
-                    } else if (sides === 4) {
+                    } else if (shapeType === 'square') {
                         rotation += Math.PI / 4; // 45 deg for Squares
                     }
                     // Circles (32 sides) don't need rotation adjustment
                 }
 
-                // Adjust cluster radius specific for Octagons to avoid overlap
-                // The circumradius math for octagons touching flat-to-flat is different.
                 if (!isNest) {
-                    if (sides === 8) {
-                        // Octagons need more space + distinct gap (1.25 -> 1.35)
-                        const clusterRadius = 45 * scale * 1.35;
-                        const clusterCenters = getPolygonVertices(3, clusterRadius, { x: 50, y: 50 }, -Math.PI / 2);
-                        centerX = clusterCenters[i].x;
-                        centerY = clusterCenters[i].y;
-                    } else if (sides === 4) {
+                    if (sides === 4) {
                         // Squares (Level 4)
                         // Need distinct spacing and rotation
                         const clusterRadius = 45 * scale * 1.25;
@@ -84,12 +72,7 @@ export function ModeVisual({ mode, shapeType, shapesRemaining, className, size =
                 return (
                     <polygon
                         key={i}
-                        points={getPolygonVertices(
-                            sides,
-                            45 * scale,
-                            { x: centerX, y: centerY },
-                            rotation
-                        ).map(p => `${p.x},${p.y}`).join(' ')}
+                        points={getShapeVertices(shapeType, 45 * scale, { x: centerX, y: centerY }, rotation).map(p => `${p.x},${p.y}`).join(' ')}
                         fill="currentColor"
                         fillOpacity={opacity}
                         stroke="currentColor"

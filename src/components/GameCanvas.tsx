@@ -1,8 +1,7 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
 import {
-    getPolygonVertices,
     checkPlacementType,
-    getSides
+    getShapeVertices,
 } from '../utils/geometry';
 import type { Shape, Point, ShapeType, PlacementResult } from '../utils/geometry';
 import { cn } from '../utils/cn';
@@ -16,6 +15,16 @@ interface GameCanvasProps {
     fixedRadius?: number;
     targetMode?: 'inside' | 'outside';
     transitionMode?: 'success' | 'failure';
+    colorMode?: 'random' | 'fixed' | 'palette';
+    fixedColor?: string;
+    palette?: string[];
+    editorMode?: boolean;
+    clearSignal?: number;
+    undoSignal?: number;
+    loadSignal?: number;
+    loadedShapes?: Shape[];
+    onShapesChange?: (shapes: Shape[]) => void;
+    absoluteFill?: boolean;
 }
 
 export const GameCanvas = ({
@@ -26,7 +35,17 @@ export const GameCanvas = ({
     onTransitionEnd,
     fixedRadius = 50,
     targetMode = 'outside',
-    transitionMode = 'success'
+    transitionMode = 'success',
+    colorMode = 'random',
+    fixedColor = '#22d3ee',
+    palette,
+    editorMode = false,
+    clearSignal = 0,
+    undoSignal = 0,
+    loadSignal = 0,
+    loadedShapes,
+    onShapesChange,
+    absoluteFill = true,
 }: GameCanvasProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -44,6 +63,38 @@ export const GameCanvas = ({
     // Sync refs
     useEffect(() => { shapesRef.current = shapes; }, [shapes]);
     useEffect(() => { transitioningRef.current = transitioning; }, [transitioning]);
+    useEffect(() => { onShapesChange?.(shapes); }, [onShapesChange, shapes]);
+
+    useEffect(() => {
+        if (clearSignal > 0) {
+            queueMicrotask(() => setShapes([]));
+        }
+    }, [clearSignal]);
+
+    useEffect(() => {
+        if (undoSignal > 0) {
+            queueMicrotask(() => setShapes(prev => prev.slice(0, -1)));
+        }
+    }, [undoSignal]);
+
+    useEffect(() => {
+        if (loadSignal > 0) {
+            queueMicrotask(() => setShapes(loadedShapes ?? []));
+        }
+    }, [loadSignal, loadedShapes]);
+
+    const getNextColor = useCallback((existingCount: number) => {
+        if (colorMode === 'fixed') {
+            return fixedColor;
+        }
+
+        if (colorMode === 'palette' && palette && palette.length > 0) {
+            return palette[existingCount % palette.length];
+        }
+
+        const hue = Math.floor(Math.random() * 360);
+        return `hsl(${hue}, 70%, 60%)`;
+    }, [colorMode, fixedColor, palette]);
 
     // Resize Handler
     useEffect(() => {
@@ -92,9 +143,6 @@ export const GameCanvas = ({
         const canvas = canvasRef.current;
         if (!canvas) return;
 
-        // Capture pointer to track even outside canvas
-        e.currentTarget.setPointerCapture(e.pointerId);
-
         const rect = canvas.getBoundingClientRect();
         // Update ref directly
         cursorPosRef.current = {
@@ -121,7 +169,7 @@ export const GameCanvas = ({
 
     // Helper (Memoized, but relies on props. safe to use in loop if props are stable or ref'd)
     const getShapeFromInteraction = useCallback((_durationMs: number, center: Point, type: ShapeType, radius: number, existingCount: number) => {
-        let rotation = 0;
+        let rotation = type === 'square' ? Math.PI / 4 : 0;
         if (type === 'triangle') {
             // Alternate orientation: Up (0) -> Down (PI) -> Up
             // Use existingCount to determine parity
@@ -134,7 +182,7 @@ export const GameCanvas = ({
 
     // Logic to add shape
     const tryPlaceShape = useCallback(() => {
-        if (!isHoldingRef.current || transitioningRef.current) return;
+        if (!isHoldingRef.current || (transitioningRef.current && !editorMode)) return;
         isHoldingRef.current = false;
 
         const duration = Date.now() - holdStartTimeRef.current;
@@ -143,16 +191,18 @@ export const GameCanvas = ({
         const { radius, rotation, center, type } = getShapeFromInteraction(duration, cursorPos, currentLevelShape, fixedRadius, shapesRef.current.length);
 
         const id = Math.random().toString(36).substr(2, 9);
-        const hue = Math.floor(Math.random() * 360);
-        const color = `hsl(${hue}, 70%, 60%)`;
-        // @ts-ignore 
+        const color = getNextColor(shapesRef.current.length);
         const newShape: Shape = { id, type, radius, center, rotation, color };
 
+        if (editorMode) {
+            setShapes(prev => [...prev, newShape]);
+            return;
+        }
+
         const existingPolys = shapesRef.current.map(s =>
-            getPolygonVertices(getSides(s.type), s.radius, s.center, s.rotation)
+            getShapeVertices(s.type, s.radius, s.center, s.rotation)
         );
-        const sides = getSides(type);
-        const newPoly = getPolygonVertices(sides, radius, center, rotation);
+        const newPoly = getShapeVertices(type, radius, center, rotation);
 
         const result = checkPlacementType(newPoly, existingPolys);
 
@@ -162,10 +212,16 @@ export const GameCanvas = ({
             setShapes(prev => [...prev, newShape]);
         }
 
-    }, [currentLevelShape, fixedRadius, getShapeFromInteraction, onPlaceShape, targetMode]);
+    }, [currentLevelShape, editorMode, fixedRadius, getNextColor, getShapeFromInteraction, onPlaceShape, targetMode]);
 
     const handlePointerUp = useCallback((e: React.PointerEvent) => {
-        e.currentTarget.releasePointerCapture(e.pointerId);
+        try {
+            if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+                e.currentTarget.releasePointerCapture(e.pointerId);
+            }
+        } catch {
+            // Ignore capture errors if capture was never set or already released
+        }
         tryPlaceShape();
         isHoldingRef.current = false;
     }, [tryPlaceShape]);
@@ -174,11 +230,13 @@ export const GameCanvas = ({
     // Animation Loop
     const transitionProgressRef = useRef(0);
     const transitionStartTimeRef = useRef(0);
+    const transitionCompletionNotifiedRef = useRef(false);
 
     // External trigger for transition
     useEffect(() => {
         if (transitioning) {
             transitionStartTimeRef.current = Date.now();
+            transitionCompletionNotifiedRef.current = false;
         }
     }, [transitioning]);
 
@@ -237,11 +295,10 @@ export const GameCanvas = ({
                 tProgress = Math.min(1, elapsed / duration);
                 transitionProgressRef.current = tProgress;
 
-                if (tProgress >= 1) {
-                    if (shapesRef.current.length > 0) {
-                        setShapes([]);
-                        onTransitionEnd?.();
-                    }
+                if (tProgress >= 1 && !transitionCompletionNotifiedRef.current) {
+                    transitionCompletionNotifiedRef.current = true;
+                    setShapes([]);
+                    onTransitionEnd?.();
                 }
             } else {
                 transitionProgressRef.current = 0;
@@ -321,8 +378,7 @@ export const GameCanvas = ({
 
                 if (opacity <= 0.01) return;
 
-                const sides = getSides(shape.type);
-                const poly = getPolygonVertices(sides, renderRadius, renderCenter, shape.rotation);
+                const poly = getShapeVertices(shape.type, renderRadius, renderCenter, shape.rotation);
 
                 ctx.beginPath();
                 poly.forEach((p, i) => {
@@ -331,7 +387,6 @@ export const GameCanvas = ({
                 });
                 ctx.closePath();
 
-                // @ts-ignore
                 let shapeColor = shape.color || `rgba(34, 211, 238, 1)`;
 
                 // Dynamic Transition Color
@@ -351,19 +406,21 @@ export const GameCanvas = ({
             });
 
             // Draw Ghost
-            if (isHoldingRef.current && !transitioningRef.current) {
+            if (isHoldingRef.current && (!transitioningRef.current || editorMode)) {
                 const duration = Date.now() - holdStartTimeRef.current;
                 const cursorPos = cursorPosRef.current;
 
                 const { radius, rotation } = getShapeFromInteraction(duration, cursorPos, currentLevelShape, fixedRadius, shapesRef.current.length);
-                const sides = getSides(currentLevelShape);
-                const poly = getPolygonVertices(sides, radius, cursorPos, rotation);
+                const poly = getShapeVertices(currentLevelShape, radius, cursorPos, rotation);
 
-                const existingPolys = shapesRef.current.map(s =>
-                    getPolygonVertices(getSides(s.type), s.radius, s.center, s.rotation)
-                );
-                const result = checkPlacementType(poly, existingPolys);
-                const isValid = result === targetMode;
+                let isValid = true;
+                if (!editorMode) {
+                    const existingPolys = shapesRef.current.map(s =>
+                        getShapeVertices(s.type, s.radius, s.center, s.rotation)
+                    );
+                    const result = checkPlacementType(poly, existingPolys);
+                    isValid = result === targetMode;
+                }
 
                 ctx.beginPath();
                 poly.forEach((p, i) => {
@@ -373,7 +430,7 @@ export const GameCanvas = ({
                 ctx.closePath();
 
                 // Colors: Success = Purple/Green, Failure = Red
-                const validColor = `rgba(168, 85, 247, 0.8)`; // Purple
+                const validColor = editorMode ? `rgba(34, 211, 238, 0.8)` : `rgba(168, 85, 247, 0.8)`;
                 const errorColor = `rgba(239, 68, 68, 0.8)`;  // Red
 
                 ctx.strokeStyle = isValid ? validColor : errorColor;
@@ -395,7 +452,7 @@ export const GameCanvas = ({
 
         render();
         return () => cancelAnimationFrame(animationFrameId);
-    }, [currentLevelShape, fixedRadius, getShapeFromInteraction, onTransitionEnd, targetMode, transitionMode]);
+    }, [currentLevelShape, editorMode, fixedRadius, getShapeFromInteraction, onTransitionEnd, targetMode, transitionMode]);
 
     const handlePointerCancel = useCallback((e: React.PointerEvent) => {
         // If the interaction is cancelled (e.g. palm rejection, scroll takeover, context menu),
@@ -403,8 +460,10 @@ export const GameCanvas = ({
         if (isHoldingRef.current) {
             isHoldingRef.current = false;
             try {
-                e.currentTarget.releasePointerCapture(e.pointerId);
-            } catch (err) {
+                if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+                    e.currentTarget.releasePointerCapture(e.pointerId);
+                }
+            } catch {
                 // Ignore capture errors if already released
             }
         }
@@ -414,7 +473,14 @@ export const GameCanvas = ({
         <div
             ref={containerRef}
             className={cn("relative w-full h-full touch-none", className)}
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 0, touchAction: 'none' }}
+            style={{
+                position: absoluteFill ? 'absolute' : 'relative',
+                inset: absoluteFill ? 0 : undefined,
+                width: '100%',
+                height: '100%',
+                zIndex: 0,
+                touchAction: 'none',
+            }}
         >
             <canvas
                 ref={canvasRef}

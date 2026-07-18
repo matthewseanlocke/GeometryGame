@@ -1,0 +1,41 @@
+{
+    "id":  "circle-field",
+    "name":  "Circle Field",
+    "description":  "Place four separate sizes of circle shapes, from large to small.",
+    "tags":  [
+                 "first-circuit",
+                 "outside",
+                 "circle",
+                 "four-sizes"
+             ],
+    "stages":  [
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.94,
+                       "shapeType":  "circle",
+                       "colorMode":  "random"
+                   },
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.72,
+                       "shapeType":  "circle",
+                       "colorMode":  "random"
+                   },
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.52,
+                       "shapeType":  "circle",
+                       "colorMode":  "random"
+                   },
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.4,
+                       "shapeType":  "circle",
+                       "colorMode":  "random"
+                   }
+               ]
+}

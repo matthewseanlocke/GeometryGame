@@ -1,0 +1,41 @@
+{
+    "id":  "circle-pairs",
+    "name":  "Circle Nests",
+    "description":  "Create six circle families using one large parent and three inside sizes.",
+    "tags":  [
+                 "second-circuit",
+                 "inside",
+                 "circle",
+                 "four-stages"
+             ],
+    "stages":  [
+                   {
+                       "mode":  "outside",
+                       "targetCount":  6,
+                       "sizeScale":  0.94,
+                       "shapeType":  "circle",
+                       "colorMode":  "random"
+                   },
+                   {
+                       "mode":  "inside",
+                       "targetCount":  6,
+                       "sizeScale":  0.72,
+                       "shapeType":  "circle",
+                       "colorMode":  "random"
+                   },
+                   {
+                       "mode":  "inside",
+                       "targetCount":  6,
+                       "sizeScale":  0.52,
+                       "shapeType":  "circle",
+                       "colorMode":  "random"
+                   },
+                   {
+                       "mode":  "inside",
+                       "targetCount":  6,
+                       "sizeScale":  0.4,
+                       "shapeType":  "circle",
+                       "colorMode":  "random"
+                   }
+               ]
+}
